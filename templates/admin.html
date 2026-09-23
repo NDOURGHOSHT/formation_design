@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ formation_nom }} — Inscriptions</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-name">{{ formation_nom }} — Inscriptions</div>
+    </div>
+
+    <h2 style="margin-bottom: 24px;">{{ inscrits|length }} inscription(s)</h2>
+
+    <table class="admin-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Nom</th>
+          <th>Téléphone</th>
+          <th>Email</th>
+          <th>Niveau</th>
+          <th>Paiement</th>
+          <th>Date</th>
+          <th>Statut</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for i in inscrits %}
+        <tr>
+          <td>{{ i.id }}</td>
+          <td>{{ i.nom }}</td>
+          <td>{{ i.telephone }}</td>
+          <td>{{ i.email }}</td>
+          <td>{{ 'Débutant' if i.niveau == 'debutant' else 'Étudiant' }}</td>
+          <td>{{ 'Wave' if i.moyen_paiement == 'wave' else 'Orange Money' }}</td>
+          <td>{{ i.date_inscription }}</td>
+          <td>
+            {% if i.paiement_confirme %}
+              <span class="tag ok">Confirmé</span>
+            {% else %}
+              <span class="tag pending">En attente</span>
+            {% endif %}
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>

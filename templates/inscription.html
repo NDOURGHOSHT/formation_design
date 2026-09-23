@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ formation_nom }} — Inscription</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-name">{{ formation_nom }}</div>
+    </div>
+
+    <div class="hero">
+      <h1>Photoshop et Illustrator, dans un seul parcours.</h1>
+      <p class="subtitle">{{ formation_sous_titre }}. Une inscription, deux logiciels, des projets concrets du premier jour jusqu'au portfolio final.</p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="program">
+      <ol>
+        <li>
+          <div class="mod-title">Photoshop — les bases</div>
+          <div class="mod-meta">Interface, calques, retouche photo · 2 semaines</div>
+        </li>
+        <li>
+          <div class="mod-title">Photoshop — détourage et montage</div>
+          <div class="mod-meta">Sélections, effets, compositions · 2 semaines</div>
+        </li>
+        <li>
+          <div class="mod-title">Illustrator — les bases</div>
+          <div class="mod-meta">Vecteur, formes, tracés · 2 semaines</div>
+        </li>
+        <li>
+          <div class="mod-title">Illustrator — typographie et logo</div>
+          <div class="mod-meta">Création de logo, mise en page · 2 semaines</div>
+        </li>
+        <li>
+          <div class="mod-title">Projets mixtes</div>
+          <div class="mod-meta">Identité visuelle complète, Photoshop + Illustrator · 2 à 3 semaines</div>
+        </li>
+        <li>
+          <div class="mod-title">Portfolio final</div>
+          <div class="mod-meta">Finalisation et présentation de tes projets · 1 à 2 semaines</div>
+        </li>
+      </ol>
+    </div>
+
+    <div class="price-block">
+      <div class="amount">{{ prix }}<span>FCFA</span></div>
+      <div class="label">Accès complet aux 6 modules, en vidéo et en direct</div>
+    </div>
+
+    <form method="POST" novalidate>
+      <div class="field">
+        <label for="nom">Nom complet</label>
+        <input type="text" id="nom" name="nom" value="{{ valeurs.nom }}" placeholder="Ex : Awa Ndiaye" required>
+        {% if erreurs.nom %}<div class="error">{{ erreurs.nom }}</div>{% endif %}
+      </div>
+
+      <div class="field">
+        <label for="telephone">Numéro de téléphone (WhatsApp)</label>
+        <input type="tel" id="telephone" name="telephone" value="{{ valeurs.telephone }}" placeholder="Ex : 77 123 45 67" required>
+        {% if erreurs.telephone %}<div class="error">{{ erreurs.telephone }}</div>{% endif %}
+      </div>
+
+      <div class="field">
+        <label for="email">Adresse email</label>
+        <input type="email" id="email" name="email" value="{{ valeurs.email }}" placeholder="Ex : atelier.visuel@gmail.com" required>
+        {% if erreurs.email %}<div class="error">{{ erreurs.email }}</div>{% endif %}
+      </div>
+
+      <div class="field">
+        <label>Ton niveau actuel</label>
+        <div class="choices">
+          <div class="choice">
+            <input type="radio" name="niveau" value="debutant" id="niveau-debutant" {% if valeurs.niveau == 'debutant' %}checked{% endif %}>
+            <label class="choice-box" for="niveau-debutant">Débutant complet</label>
+          </div>
+          <div class="choice">
+            <input type="radio" name="niveau" value="etudiant" id="niveau-etudiant" {% if valeurs.niveau == 'etudiant' %}checked{% endif %}>
+            <label class="choice-box" for="niveau-etudiant">Étudiant en design</label>
+          </div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Moyen de paiement préféré</label>
+        <div class="choices">
+          <div class="choice">
+            <input type="radio" name="moyen_paiement" value="wave" id="pay-wave" {% if valeurs.moyen_paiement == 'wave' %}checked{% endif %}>
+            <label class="choice-box" for="pay-wave">Wave</label>
+          </div>
+          <div class="choice">
+            <input type="radio" name="moyen_paiement" value="om" id="pay-om" {% if valeurs.moyen_paiement == 'om' %}checked{% endif %}>
+            <label class="choice-box" for="pay-om">Orange Money</label>
+          </div>
+        </div>
+      </div>
+
+      <button type="submit" class="btn">Continuer vers le paiement</button>
+      <p class="note">Tu recevras les instructions de paiement à l'étape suivante.</p>
+    </form>
+
+  </div>
+</body>
+</html>

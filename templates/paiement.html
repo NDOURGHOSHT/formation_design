@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ formation_nom }} — Paiement</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <div class="wrap">
+
+    <div class="brand">
+      <div class="brand-mark"></div>
+      <div class="brand-name">{{ formation_nom }}</div>
+    </div>
+
+    <div class="hero">
+      <h1>Merci, {{ inscrit.nom.split(' ')[0] }}.</h1>
+      <p class="subtitle">Ta place est réservée. Il ne reste plus qu'à valider le paiement pour rejoindre le groupe de la formation.</p>
+    </div>
+
+    <hr class="divider">
+
+    <div class="price-block">
+      <div class="amount">{{ prix }}<span>FCFA</span></div>
+      <div class="label">Montant à envoyer par {{ 'Wave' if inscrit.moyen_paiement == 'wave' else 'Orange Money' }}</div>
+    </div>
+
+    <div class="payment-card">
+      <div class="payment-row">
+        <div class="who">Wave</div>
+        <div class="num">{{ numero_wave }}</div>
+      </div>
+      <div class="payment-row">
+        <div class="who">Orange Money</div>
+        <div class="num">{{ numero_om }}</div>
+      </div>
+    </div>
+
+    <ol class="steps-mini">
+      <li>Envoie {{ prix }} FCFA au numéro correspondant à ton moyen de paiement.</li>
+      <li>Garde une capture ou la référence de la transaction, au cas où.</li>
+      <li>Clique sur le bouton ci-dessous pour rejoindre le groupe WhatsApp de la formation.</li>
+    </ol>
+
+    <div class="confirm-block">
+      <form method="POST" action="{{ url_for('confirmer_paiement', inscription_id=inscrit.id) }}">
+        <button type="submit" class="btn">J'ai payé — rejoindre le groupe WhatsApp</button>
+      </form>
+
+      <p class="note">Un problème avec le paiement ? Écris directement au <a href= "https://wa.me/221786508510" target="_blank"> {{ numero2 }} </a> sur WhatsApp.</p>
+    </div>
+
+  </div>
+</body>
+</html>

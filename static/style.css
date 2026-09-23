@@ -1,0 +1,347 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+  --ink: #14171f;
+  --panel: #1b1f28;
+  --panel-line: #2a2f3b;
+  --paper: #f2ede1;
+  --gold: #d9a44a;
+  --teal: #4f9088;
+  --text: #ece6d8;
+  --text-dim: #a9a496;
+  --danger: #d9704a;
+  --radius: 3px;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--ink);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+body {
+  background-image:
+    linear-gradient(var(--panel-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--panel-line) 1px, transparent 1px);
+  background-size: 42px 42px;
+  background-position: -1px -1px;
+  background-attachment: fixed;
+}
+
+h1, h2, h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  margin: 0;
+  color: var(--paper);
+}
+
+a { color: var(--gold); }
+
+.wrap {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 56px 24px 96px;
+}
+
+.brand {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-bottom: 48px;
+}
+
+.brand-mark {
+  width: 24px;
+  height: 24px;
+  background: var(--gold);
+  border-radius: 1px;
+  transform: rotate(45deg);
+  flex-shrink: 0;
+}
+
+.brand-name {
+  font-family: 'Fraunces', serif;
+  font-size: 3rem;
+  color: var(--text-dim);
+  letter-spacing: 0.02em;
+}
+
+.hero h1 {
+  font-size: 2.6rem;
+  line-height: 1.12;
+  max-width: 13ch;
+}
+
+.hero .subtitle {
+  margin-top: 18px;
+  font-size: 1.05rem;
+  color: var(--text-dim);
+  max-width: 46ch;
+}
+
+.divider {
+  border: none;
+  border-top: 1px solid var(--panel-line);
+  margin: 40px 0;
+}
+
+.program {
+  margin: 40px 0;
+}
+
+.program ol {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: mod;
+}
+
+.program li {
+  counter-increment: mod;
+  position: relative;
+  padding: 16px 0 16px 44px;
+  border-top: 1px solid var(--panel-line);
+}
+
+.program li:last-child { border-bottom: 1px solid var(--panel-line); }
+
+.program li::before {
+  content: counter(mod, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 16px;
+  font-family: 'Fraunces', serif;
+  color: var(--gold);
+  font-size: 0.95rem;
+}
+
+.program .mod-title {
+  font-weight: 600;
+  color: var(--paper);
+}
+
+.program .mod-meta {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin-top: 2px;
+}
+
+.price-block {
+  background: var(--panel);
+  border: 1px solid var(--panel-line);
+  border-radius: var(--radius);
+  padding: 28px 28px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  margin: 40px 0;
+}
+
+.price-block .amount {
+  font-family: 'Fraunces', serif;
+  font-size: 2.1rem;
+  color: var(--paper);
+}
+
+.price-block .amount span {
+  font-size: 1rem;
+  color: var(--text-dim);
+  font-family: 'Inter', sans-serif;
+  margin-left: 6px;
+}
+
+.price-block .label {
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  max-width: 22ch;
+  text-align: right;
+}
+
+form {
+  margin-top: 44px;
+}
+
+.field {
+  margin-bottom: 22px;
+}
+
+.field label {
+  display: block;
+  font-size: 0.92rem;
+  color: var(--text-dim);
+  margin-bottom: 8px;
+}
+
+.field input[type="text"],
+.field input[type="tel"],
+.field input[type="email"] {
+  width: 100%;
+  padding: 13px 14px;
+  background: var(--panel);
+  border: 1px solid var(--panel-line);
+  border-radius: var(--radius);
+  color: var(--text);
+  font-family: 'Inter', sans-serif;
+  font-size: 1rem;
+}
+
+.field input:focus,
+.choice input:focus + .choice-box {
+  outline: 2px solid var(--gold);
+  outline-offset: 1px;
+}
+
+.field .error {
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin-top: 6px;
+}
+
+.choices {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.choice {
+  position: relative;
+}
+
+.choice input {
+  position: absolute;
+  opacity: 0;
+  inset: 0;
+  cursor: pointer;
+}
+
+.choice-box {
+  padding: 10px 16px;
+  border: 1px solid var(--panel-line);
+  border-radius: var(--radius);
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.choice input:checked + .choice-box {
+  border-color: var(--gold);
+  color: var(--paper);
+}
+
+.btn {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--ink);
+  font-weight: 600;
+  font-size: 1rem;
+  padding: 15px 28px;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  width: 100%;
+  text-align: center;
+  text-decoration: none;
+}
+
+.btn:hover { background: #e6b665; }
+
+.btn-secondary {
+  background: transparent;
+  color: var(--paper);
+  border: 1px solid var(--panel-line);
+}
+
+.btn-secondary:hover { border-color: var(--gold); }
+
+.note {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+  margin-top: 14px;
+  text-align: center;
+}
+
+.payment-card {
+  background: var(--panel);
+  border: 1px solid var(--panel-line);
+  border-radius: var(--radius);
+  padding: 26px;
+  margin: 28px 0;
+}
+
+.payment-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-top: 1px solid var(--panel-line);
+}
+
+.payment-row:first-child { border-top: none; padding-top: 0; }
+
+.payment-row .who {
+  color: var(--text-dim);
+  font-size: 0.92rem;
+}
+
+.payment-row .num {
+  font-family: 'Fraunces', serif;
+  color: var(--paper);
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
+}
+
+.steps-mini {
+  color: var(--text-dim);
+  font-size: 0.92rem;
+  margin: 18px 0 0;
+  padding-left: 20px;
+}
+
+.steps-mini li { margin-bottom: 6px; }
+
+.confirm-block {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 1px solid var(--panel-line);
+}
+
+table.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+table.admin-table th,
+table.admin-table td {
+  text-align: left;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--panel-line);
+}
+
+table.admin-table th {
+  color: var(--text-dim);
+  font-weight: 500;
+}
+
+.tag {
+  display: inline-block;
+  padding: 3px 8px;
+  border-radius: 2px;
+  font-size: 0.78rem;
+}
+
+.tag.ok { background: rgba(79,144,136,0.2); color: var(--teal); }
+.tag.pending { background: rgba(217,164,74,0.15); color: var(--gold); }
+
+@media (max-width: 560px) {
+  .hero h1 { font-size: 2.1rem; }
+  .price-block { flex-direction: column; align-items: flex-start; }
+  .price-block .label { text-align: left; }
+}
