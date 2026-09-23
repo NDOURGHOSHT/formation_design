@@ -17,7 +17,7 @@ NUMERO_OM = "78 446 21 39"
 NUMERO_2 = "78 650 85 10"
 LIEN_WHATSAPP = "https://chat.whatsapp.com/JE9gBdTqzKI0SB3nXgcqtO?s=cl&p=i&mlu=4&ilr=4"
 # Change ce mot de passe avant de partager le lien admin à qui que ce soit
-ADMIN_CLE = "atelier2026"
+ADMIN_CLE = os.environ.get("ADMIN_CLE")
 
 
 def get_db():
@@ -45,7 +45,7 @@ def init_db():
 
     colonnes = [row["name"] for row in conn.execute("PRAGMA table_info(inscriptions)")]
     if "email" not in colonnes:
-        conn.execute("ALTER TABLE inscription ADD COLUMN email TEXT NOT NULL '' ")
+        conn.execute("ALTER TABLE inscriptions ADD COLUMN email TEXT NOT NULL '' ")
     conn.commit()
     conn.close()
 
