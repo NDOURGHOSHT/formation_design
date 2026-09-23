@@ -149,7 +149,7 @@ def admin():
     conn.close()
     return render_template("admin.html", inscrits=inscrits, formation_nom=FORMATION_NOM)
 
+init_db()
 
 if __name__ == "__main__":
-    init_db()
     app.run(debug=True, host="0.0.0.0", port=5000)
