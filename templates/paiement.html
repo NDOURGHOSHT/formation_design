@@ -44,7 +44,7 @@
     </ol>
 
     <div class="confirm-block">
-      <form method="POST" action="{{ url_for('confirmer_paiement', inscription_id=inscrit.id) }}">
+      <form method="POST" action="{{ url_for('confirmer_paiement', reference=inscrit.reference) }}">
         <button type="submit" class="btn">J'ai payé — rejoindre le groupe WhatsApp</button>
       </form>
 
